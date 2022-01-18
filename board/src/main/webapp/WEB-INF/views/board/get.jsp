@@ -56,9 +56,7 @@
 						type="hidden" name="type" value="${cri.type }"> <input
 						type="hidden" name="keyword" value="${cri.keyword }">
 				</form>
-
 			</div>
-
 		</div>
 	</div>
 </div>
@@ -78,6 +76,7 @@
 	</div>
 </div>
 <!-- 첨부파일 끝 -->
+
 
 <!-- 덧글 목록 시작 -->
 <br />

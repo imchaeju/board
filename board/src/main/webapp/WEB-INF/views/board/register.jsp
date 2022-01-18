@@ -50,19 +50,16 @@
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
-
 			<div class="panel-heading"></div>
-
 			<div class="panel-body">
 				<div class="form-group uploadDiv">
 					파일 첨부: <input type="file" name="uploadFile" multiple>
+					<!-- http://tcpschool.com/html-tag-attrs/input-multiple -->
 				</div>
-
 				<div class="uploadResult">
 					<ul></ul>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
@@ -82,44 +79,26 @@
 
 											// 글 등록 버튼을 누르면 첨부파일의 정보도 함께 전송 되도록 수정.
 											var str = "";
-											$(".uploadResult ul li")
-													.each(
-															function(i, obj) {
+											$(".uploadResult ul li").each(function(i, obj) {
 																var jobj = $(obj);
-																console
-																		.dir(jobj);// console.dir() JavaScript 객체의 모든 속성을 보는 방법.
-																console
-																		.log("-----------------");
-																console
-																		.log(jobj
-																				.data("filename"));
+																console.dir(jobj);// console.dir() JavaScript 객체의 모든 속성을 보는 방법.
+																console.log("-----------------");
+																console.log(jobj.data("filename"));
 
 																str += "<input type='hidden' name='attachList[";
-																str += i
-																		+ "].fileName' value='"
-																		+ jobj
-																				.data("filename");
+																str += i + "].fileName' value='"+ jobj.data("filename");
 																str += "'>";
 
 																str += "<input type='hidden' name='attachList[";
-																str += i
-																		+ "].uuid' value='"
-																		+ jobj
-																				.data("uuid");
+																str += i + "].uuid' value='"+ jobj.data("uuid");
 																str += "'>";
 
 																str += "<input type='hidden' name='attachList[";
-																str += i
-																		+ "].uploadPath' value='"
-																		+ jobj
-																				.data("path");
+																str += i + "].uploadPath' value='"+ jobj.data("path");
 																str += "'>";
 
 																str += "<input type='hidden' name='attachList[";
-																str += i
-																		+ "].fileType' value='"
-																		+ jobj
-																				.data("type");
+																str += i + "].fileType' value='" + jobj.data("type");
 																str += "'>";
 															});
 											formObj.append(str).submit();
@@ -213,21 +192,19 @@
 												// encodeURIComponent : 
 												// uri 로 전달되는 특수문자의 치환.
 												// & ?
-												var fileLink = fileCallPath
-														.replace(new RegExp(
-																/\\/g), "/");
+												var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
 												// 전달되는 값들 중에서 역슬러시를 찾아서 슬러시로 변경.
 
 												str += "<li data-path='";
-							str += obj.uploadPath+"' data-uuid='";
-							str += obj.uuid+"' data-filename='";
-							str += obj.fileName+"' data-type='";
-							str += obj.image+"'><div>";
+												str += obj.uploadPath+"' data-uuid='";
+												str += obj.uuid+"' data-filename='";
+												str += obj.fileName+"' data-type='";
+												str += obj.image+"'><div>";
 												str += "<img src='/resources/img/attach.png' width='20' height='20'>";
 												str += "<span>" + obj.fileName
 														+ "</span> ";
 												str += "<b data-file='"+fileCallPath;
-							str += "' data-type='file'>[x]</b>";
+												str += "' data-type='file'>[x]</b>";
 												str += "</div></li>";
 											});
 							uploadUL.append(str);

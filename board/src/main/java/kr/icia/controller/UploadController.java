@@ -33,6 +33,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class UploadController {
+	
 	String uploadFolder = "c:\\upload";
 	
 	@Setter(onMethod_ = @Autowired)

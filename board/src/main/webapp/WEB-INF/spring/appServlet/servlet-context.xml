@@ -31,6 +31,7 @@
 	<beans:bean id="multipartResolver" 
 	class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</beans:bean>
+	<!-- xml 작성시도 ctrl+space 자동 완성 지원함. StandardServletM 까지만 쓰고 자동완성. -->
 	
 	<security:global-method-security
 	pre-post-annotations="enabled" 

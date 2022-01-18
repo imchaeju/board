@@ -101,8 +101,7 @@ public class BoardController {
 	// post 요청으로 /modify 가 온다면, 아래 메소드 수행.
 	@PostMapping("/modify")
 	@PreAuthorize("principal.username== #board.writer")//작성자만 수정가능하게 해줌
-	public String modify(BoardVO board, Criteria cri
-			, RedirectAttributes rttr, String writer) {
+	public String modify(BoardVO board, Criteria cri, RedirectAttributes rttr) {
 
 		log.info("modify:" + board);
 		if (service.modify(board)) {
@@ -120,13 +119,14 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 
+	// 작성자와 로그인 계정이 일치한다면 게시물 삭제 가능
+	@PreAuthorize("principal.username== #writer")
 	@PostMapping("/remove")
 	public String remove(@RequestParam("bno") Long bno, Criteria cri
-			, RedirectAttributes rttr) {
+			, RedirectAttributes rttr, String writer) {
 
 		log.info("remove..." + bno);
-		List<BoardAttachVO> attachList
-		= service.getAttachList(bno);
+		List<BoardAttachVO> attachList = service.getAttachList(bno);
 
 		if (service.remove(bno)) {
 			deleteFiles(attachList);// 서버디스크의 파일 정보 삭제.
@@ -170,5 +170,4 @@ public class BoardController {
 			}
 		});
 	}
-
 }
